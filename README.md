@@ -2,6 +2,12 @@
 
 人間対CPUで最初から決着・再戦まで遊べる、オリジナルのWebカードゲーム第一段階です。React / TypeScript / Vite / Vitestを使用しています。
 
+## ブラウザですぐ遊ぶ
+
+**[ゲームを開く](https://25jy0111.github.io/lumen-duel/)**
+
+PC・スマートフォンのブラウザからアクセスできます。インストールやログインは不要です。各端末で独立したCPU戦を行います。対人オンライン対戦や試合の保存には対応しておらず、ブラウザを更新すると新しい試合になります。
+
 ## このPCで遊ぶ
 
 **`start-game.cmd` をダブルクリックしてください。** ブラウザが開きます。起動したウィンドウを開いたまま遊んでください。終了時はそのウィンドウを閉じるか、Ctrl+Cで停止します。
@@ -9,7 +15,7 @@
 - プロジェクト：`C:\Users\25jy0111\lumen-duel`
 - 通常のURL：`http://127.0.0.1:5173/`（ポート使用中は起動ウィンドウに表示されるURL）
 - このPC用にNode.jsを `C:\Users\25jy0111\tools\node` に導入済み。ランチャーが自動で参照します。システムのPATH変更は不要です。
-- 外部には公開していません。ブラウザを更新すると試合は初期化されます。
+- ローカル起動でも公開版と同じルールで遊べます。ブラウザを更新すると試合は初期化されます。
 
 ## 遊び方
 
@@ -37,6 +43,8 @@ npm run build       # 型検査 + dist/ に本番ビルド
 npm run preview     # ビルド済みアプリのローカル確認
 ```
 
+本番ビルドの確認URLは `http://127.0.0.1:4173/lumen-duel/` です。開発時は従来どおり `http://127.0.0.1:5173/` で開きます。
+
 画面の自動操作テストは、開発サーバーを起動した状態で、別のウィンドウから実行します。
 
 ```sh
@@ -56,6 +64,14 @@ npm.cmd test
 ```
 
 開発サーバーは標準ではこのPCからだけアクセスできます。別端末での画面確認が必要な場合は `npm run dev -- --host 0.0.0.0` とし、同じLANのPCのIPアドレス・表示ポートで接続します。OSのファイアウォール設定が必要になる場合があります。これはオンライン対戦ではなく、開いた端末ごとの独立したCPU戦です。
+
+## 公開版の更新
+
+[GitHubリポジトリ](https://github.com/25jy0111/lumen-duel)の `main` に変更をpushすると、[GitHub Actions](https://github.com/25jy0111/lumen-duel/actions)が自動テスト・型検査・ビルドを行い、成功した場合に `dist/` をGitHub Pagesへ公開します。公開処理は `.github/workflows/deploy.yml` に定義しています。
+
+GitHub側の Settings → Pages → Source は **GitHub Actions** を使用します。公開URLの `/lumen-duel/` に合わせたViteのbase設定が必要です。リポジトリ名や公開先を変更する場合は、この設定とREADMEのURLを更新してください。手順の参考：[Vite公式のGitHub Pagesガイド](https://vite.dev/guide/static-deploy)。
+
+`package.json` の `private: true` は誤ってnpmへパッケージを公開することを防ぐ設定で、GitHubリポジトリの公開範囲とは別です。
 
 ## 資料と制限
 

@@ -19,6 +19,14 @@ docs/rules.md    実装しているルールの正本
 
 TypeScript + React + Vite。サーバー・DB・外部サービス不要。ゲーム状態はメモリ上だけに保持し、ページ再読み込みで新しいゲームになります。開発時のViteサーバーは静的アプリを配信するためのもので、対戦サーバーではありません。
 
+## 公開と配信
+
+GitHub Pagesでビルド済みの静的ファイルを配信します。公開URLは `https://25jy0111.github.io/lumen-duel/`。配信にGitHubを利用しますが、ゲームの進行・CPU判断は引き続き各ブラウザ内で完結します。
+
+`.github/workflows/deploy.yml` は `main` へのpushと手動実行を受け付けます。Node.js 24で `npm ci → npm test → npm run build` を実行し、成功時の `dist/` だけを別のデプロイジョブから公開します。ビルドジョブにはソース読み取り権限、デプロイジョブにはPages書き込みとOIDCの権限を指定し、Actionsは公式コミットのSHAに固定します。
+
+Viteの本番baseは `/lumen-duel/` に合わせます。ローカル開発は `/`、ビルド済みプレビューは `/lumen-duel/` で確認します。リポジトリ名や独自ドメインを変更する際はbaseと公開URLも見直します。
+
 ## エンジンの境界
 
 - `createGame(seed?)` が初期状態を返します。
