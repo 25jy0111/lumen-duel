@@ -75,6 +75,9 @@ GitHub側の Settings → Pages → Source は **GitHub Actions** を使用し�
 
 ## 資料と制限
 
+- [自宅PC・別のCodexへの引き継ぎ](docs/handoff.md)
+- [自宅Codexへ貼り付ける開始プロンプト](docs/codex-start-prompt.md)
+- [AI向けのプロジェクト指示](AGENTS.md)
 - [ルール・暫定仕様](docs/rules.md)
 - [構成・設計・拡張方針](docs/design.md)
 - 8種の仮カード、相対重み付きの独立抽選、シードによる再現可能な乱数。
